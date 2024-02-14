@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="fd  mb-5">
+
+  <div >
+    <h1 class="tr">ADD PACKAGES</h1>
+    
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 shadow-lg p-3 mb-5 bg-white rounded">
+        <form class="form-group" action="{% url 'add_hotel' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button class="btn btn-primary" type="submit">ADD</button>
+        </form>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div><br><br>
+<h2 class="trr">Places</h2>
+<div class="container">
+   
+  {% for i in hotels_list %}
+<div class="hotel">
+  <div class="container">
+    <a class="ht" href='/bookhotel/{{ i.hotel_name }}/{{ date }}'>
+    <div class="row shadow-lg p-3 mt-5 mb-5 rounded">
+      <div class="col-md-4 ">
+        <img class="h-img shadow-lg" src="/media/{{ i.image1 }}" alt="image">
+      </div>
+      <div class="col-md-8">
+        <p class="h-name">{{i.hotel_name}}</p>
+        <p class="h-add">{{i.hotel_address}}.<br>{{ i.distfromap }} KM from nearest airport.</p>
+        <p class="h-price">{{ i.hotel_price }}*</p>
+        <p class="h-pricex">/night</p>
+        <p class="h-am">{{ i.amenities}}</p>
+        <div class="h-rate">
+        {% with ''|center:i.hotel_rating as range %}
+          {% for _ in range %}
+              ★
+          {% endfor %}
+        {% endwith %}
+        </div>
+      </div>
+    </div>
+    <h1 class="fff">BOOK</h1>
+    </a>
+  </div>
+  </div>
+
+{% endfor %}
+</div>
+
+{% endblock %}
