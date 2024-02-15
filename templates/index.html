@@ -24,17 +24,37 @@
           <img class="logo" src="{% static "img/logo.png" %}" alt="">
           <h1 class="title"><b>TRAVEL TRIP</b></h1>
         </div>
+
+
+
+        {% if user.is_staff %}
         <a href="{% url 'package' %}">
+          <div id="one"class="feature one shadow-lg p-2 rounded">
+              <h5><ion-icon name="pricetags-sharp"></ion-icon>PACKAGES</h5>
+              <p>Get customized packages as per your convinence</p>
+          </div></a>
+          <a href="{% url 'add_flight' %}">
+            <div id="two"class="feature two shadow-lg p-3 rounded">
+                <h5><ion-icon name="airplane-sharp"></ion-icon>Add flight</h5>
+                <p>Get exciting deals on flights</p>
+            </div></a>
+      {% else %}
+      <a href="{% url 'package' %}">
         <div id="one"class="feature one shadow-lg p-2 rounded">
             <h5><ion-icon name="pricetags-sharp"></ion-icon>PACKAGES</h5>
             <p>Get customized packages as per your convinence</p>
         </div></a>
         <a href="{% url 'flights' %}">
-        <div id="two"class="feature two shadow-lg p-3 rounded">
-            <h5><ion-icon name="airplane-sharp"></ion-icon>FLIGHTS</h5>
-            <p>Get exciting deals on flights</p>
-        </div></a>
+          <div id="two"class="feature two shadow-lg p-3 rounded">
+              <h5><ion-icon name="airplane-sharp"></ion-icon>FLIGHTS</h5>
+              <p>Get exciting deals on flights</p>
+          </div></a>
+  
+      {% endif %}
 
+
+     
+ 
 
        
 

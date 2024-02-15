@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Flights,Hotels,BookPackage,BookFlight,BookHotel,Famous
+from .models import City, Flights,Hotels,BookPackage,BookFlight,BookHotel,Famous
 import datetime
 
 
@@ -97,3 +97,17 @@ class HotelsForm(forms.ModelForm):
     class Meta:
         model = Hotels
         fields = '__all__'  # You can also specify the fields you want to include
+
+class FlightsForm(forms.ModelForm):
+    class Meta:
+        model = Flights
+        fields = '__all__'
+        widgets = {
+            'dept_time': forms.TimeInput(attrs={'type': 'time'}),
+            'dest_time': forms.TimeInput(attrs={'type': 'time'}),
+        }
+
+class CityForm(forms.ModelForm):
+    class Meta:
+        model = City
+        fields = '__all__'

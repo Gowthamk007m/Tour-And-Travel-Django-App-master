@@ -30,8 +30,8 @@ urlpatterns = [
     path('cancelpackage/<str:flight>/<int:seat>/<str:hotel>/<str:date>/<int:room>',views.CancelPackage,name='CancelPackage'),
     path('concanpackage/<str:flight>/<int:seat>/<str:hotel>/<str:date>/<int:room>',views.ConfirmCancelPackage,name='ConfirmCancelPackage'),
 
-
-
+    path('add_city/', views.add_city, name='add_city'),
+    path('add_flight/', views.add_flight, name='add_flight'),
     path('add_famous/',views.add_famous,name="add_famous"),
     path('add_hotel/', views.add_hotel, name='add_hotel'),
     path('adminlogin', LoginView.as_view(template_name='adminlogin.html'),name='adminlogin'),

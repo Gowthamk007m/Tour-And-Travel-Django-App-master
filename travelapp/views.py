@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from .forms import FamousForm, SignUpForm,HotelForm,FlightForm,ChoiceForm,SeatForm,RoomForm,CityForm
+from .forms import FamousForm, FlightsForm, SignUpForm,HotelForm,FlightForm,ChoiceForm,SeatForm,RoomForm,CityForm
 from .models import Flights,Hotels,Famous,BookFlight,BookHotel,BookPackage,City
 
 # Create your views here.
@@ -36,6 +36,19 @@ def PackageView(request):
     else:
         return render(request,'package.html',{'form': form})
 
+
+def add_city(request):
+    if request.method == 'POST':
+        form = CityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Change 'city_list' to the appropriate URL or view name after form submission
+    else:
+        form = CityForm()
+
+    cities_list = City.objects.all()  # You may want to fetch existing data to display on the template
+
+    return render(request, 'add_city.html', {'form': form, 'cities_list': cities_list})
 
 def registerView(request):
     if request.method=="POST":
@@ -104,6 +117,19 @@ def FlightView(request):
             return render(request,'flights.html',{'form': form})
     else:
         return render(request,'flights.html',{'form': form})
+    
+def add_flight(request):
+    if request.method == 'POST':
+        form = FlightsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Change 'flight_list' to the appropriate URL or view name after form submission
+    else:
+        form = FlightsForm()
+
+    flights_list = Flights.objects.all()  # You may want to fetch existing data to display on the template
+
+    return render(request, 'add_flight.html', {'form': form, 'flights_list': flights_list})
 
 @login_required
 def Dashboard(request):
