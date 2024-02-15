@@ -107,7 +107,13 @@ class FlightsForm(forms.ModelForm):
             'dest_time': forms.TimeInput(attrs={'type': 'time'}),
         }
 
-class CityForm(forms.ModelForm):
+class CityForm(forms.Form):
+    city = forms.CharField(max_length=20,label='CITY',widget=forms.TextInput(attrs={'class' : 'fs-form form-control','placeholder':'City'}),required=False)
+
+    class Meta:
+        models = Famous
+
+class CityForm2(forms.ModelForm):
     class Meta:
         model = City
         fields = '__all__'

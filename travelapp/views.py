@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from .forms import FamousForm, FlightsForm, SignUpForm,HotelForm,FlightForm,ChoiceForm,SeatForm,RoomForm,CityForm
+from .forms import CityForm2, FamousForm, FlightsForm, SignUpForm,HotelForm,FlightForm,ChoiceForm,SeatForm,RoomForm,CityForm
 from .models import Flights,Hotels,Famous,BookFlight,BookHotel,BookPackage,City
 
 # Create your views here.
@@ -39,12 +39,12 @@ def PackageView(request):
 
 def add_city(request):
     if request.method == 'POST':
-        form = CityForm(request.POST)
+        form = CityForm2(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')  # Change 'city_list' to the appropriate URL or view name after form submission
     else:
-        form = CityForm()
+        form = CityForm2()
 
     cities_list = City.objects.all()  # You may want to fetch existing data to display on the template
 
