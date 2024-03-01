@@ -23,6 +23,13 @@ class Flights(models.Model):
     dest_time = models.TimeField(auto_now=False,auto_now_add=False)
     company = models.CharField(max_length=15,default=" ")
     seats = models.IntegerField()
+    
+    def save(self, *args, **kwargs):
+        # Convert source and destination fields to uppercase before saving
+        self.source = self.source.upper()
+        self.destination = self.destination.upper()
+
+        super().save(*args, **kwargs)
 
 
     def __str__(self):
